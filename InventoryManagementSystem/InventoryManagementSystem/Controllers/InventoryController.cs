@@ -54,11 +54,19 @@ namespace InventoryManagementSystem.Controllers
         {
             if (ModelState.IsValid)
             {
-
-                var newInventory = _repo.UpdateInventory(Inventory, code);
-                if (newInventory != null)
-                    return Ok(newInventory);
-                return BadRequest(new { error = "User Not Exists..." });
+                var unique = _repo.RoomCheck(Inventory);
+                if (_repo.IsUnique(unique))
+                {
+                    var newInventory = _repo.UpdateInventory(Inventory, code);
+                    if (newInventory != null)
+                        return Ok(newInventory);
+                    return BadRequest(new { error = "User Not Exists..." });
+                }
+                else
+                {
+                    return Conflict(new { error = _repo.UniqueCheckMsg(unique) });
+                }
+                    
 
             }
             return BadRequest(new { error = "Other Issue Occures..." });

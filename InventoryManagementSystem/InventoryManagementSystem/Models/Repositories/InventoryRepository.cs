@@ -15,11 +15,12 @@ namespace InventoryManagementSystem.Models.Repositories
         }
         public Inventory AddInventory(OperationOnInventory opInventory)
         {
+            var room = _context.Rooms.FirstOrDefault(x => x.RoomNumber == opInventory.RoomNumber);
             var inventory = new Inventory
             {
                 InventoryCode = opInventory.InventoryCode,
                 InventoryName = opInventory.InventoryName,
-                RoomId = opInventory.RoomId
+                Room = room
             };
 
             try
@@ -40,15 +41,19 @@ namespace InventoryManagementSystem.Models.Repositories
             var inventory = _context.Inventorys.FirstOrDefault(x => x.InventoryCode == code);
             if(inventory != null)
             {
-                inventory = new Inventory
+                var room = _context.Rooms.FirstOrDefault(x => x.RoomNumber == opInventory.RoomNumber);
+                if(room != null)
                 {
-                    Id = inventory.Id,
-                    InventoryCode = opInventory.InventoryCode,
-                    InventoryName = opInventory.InventoryName,
-                    RoomId = opInventory.RoomId
+                    inventory = new Inventory
+                    {
+                        Id = inventory.Id,
+                        InventoryCode = opInventory.InventoryCode,
+                        InventoryName = opInventory.InventoryName,
+                        Room = room
                 };
 
-                _context.SaveChanges();
+                    _context.SaveChanges();
+                }
             }
             
             return inventory;
@@ -84,6 +89,10 @@ namespace InventoryManagementSystem.Models.Repositories
                 {
                     return UniqueError.InventoryNumberExists;
                 }
+
+                return this.RoomCheck(opInventory);
+
+                
                                 
             }
             return UniqueError.None;
@@ -97,23 +106,34 @@ namespace InventoryManagementSystem.Models.Repositories
 
                 case UniqueError.InventoryNumberExists:  return "Inventory Number Already Exists...";
 
+                case UniqueError.RoomNotExist: return "Room Not Exists...";
+
                 default: return "Something Went Wrong...";
             }
         }
 
         public bool IsUnique(UniqueError err)
         {
-            if(err == UniqueError.InventoryNumberExists)
+            if(err == UniqueError.InventoryNumberExists || err == UniqueError.RoomNotExist)
                 return false;
             return true;
         }
 
-        
+        public UniqueError RoomCheck(OperationOnInventory opInventory)
+        {
+            var room = _context.Rooms.FirstOrDefault(x => x.RoomNumber == opInventory.RoomNumber);
+            if (room == null)
+            {
+                return UniqueError.RoomNotExist;
+            }
+            return UniqueError.None;
+        }
     }
 
     public enum UniqueError
     {
         None,
-        InventoryNumberExists
+        InventoryNumberExists,
+        RoomNotExist
     }
 }

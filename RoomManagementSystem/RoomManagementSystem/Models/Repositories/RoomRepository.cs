@@ -51,6 +51,7 @@ namespace RoomManagementSystem.Models.Repositories
                     Price= opRoom.Price
                 };
 
+                //_context.Entry(room).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
                 _context.SaveChanges();
             }
             

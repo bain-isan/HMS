@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using InventoryManagementSystem.Models;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace InventoryManagementSystem.Data
 {
@@ -6,5 +7,10 @@ namespace InventoryManagementSystem.Data
     public class Inventory : InventoryAbstract
     {
         public int Id { get; set; }
+        public int? RoomId { get; set; }
+
+        [ForeignKey("RoomId")]
+        public Room Room { get; set; }
+
     }
 }

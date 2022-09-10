@@ -16,9 +16,6 @@ namespace InventoryManagementSystem.Data
         [DataType(DataType.Date)]
         public DateTime FromDate { get; set; }
 
-        public int? RoomId { get; set; }
-
-        [ForeignKey("RoomId")]
-        public Room Room { get; set; }
+        
     }
 }

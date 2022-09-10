@@ -19,5 +19,7 @@ namespace InventoryManagementSystem.Models.Repositories
         UniqueError UniqueCheck(OperationOnInventory opInventory);
         string UniqueCheckMsg(UniqueError err);
         bool IsUnique(UniqueError err);
+
+        UniqueError RoomCheck(OperationOnInventory opInventory);
     }
 }

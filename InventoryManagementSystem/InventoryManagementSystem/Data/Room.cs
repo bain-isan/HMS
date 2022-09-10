@@ -7,5 +7,6 @@ namespace InventoryManagementSystem.Models
     public class Room : RoomAbstract
     {
         public int Id { get; set; }
+        
     }
 }

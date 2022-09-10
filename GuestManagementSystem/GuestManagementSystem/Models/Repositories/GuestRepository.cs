@@ -38,14 +38,14 @@ namespace GuestManagementSystem.Models.Repositories
             return guest;
         }
 
-        public Guest UpdateGuest(OperationOnGuest opGuest, int id)
+        public Guest UpdateGuest(OperationOnGuest opGuest, int code)
         {
-            var guest = _context.Guests.Find(id);
+            var guest = _context.Guests.FirstOrDefault(x => x.MemberCode == code);
             if(guest != null)
             {
                 guest = new Guest
                 {
-                    Id = id,
+                    Id = guest.Id,
                     Name = opGuest.Name,
                     MemberCode = opGuest.MemberCode,
                     PhoneNumber = opGuest.PhoneNumber,
@@ -60,10 +60,10 @@ namespace GuestManagementSystem.Models.Repositories
             return guest;
         }
 
-        public Guest DeleteGuest(int id)
+        public Guest DeleteGuest(int code)
         {
-            var guest = _context.Guests.Find(id);
-            if(guest != null)
+            var guest = _context.Guests.FirstOrDefault(x => x.MemberCode == code);
+            if (guest != null)
             {
                 _context.Guests.Remove(guest);
                 _context.SaveChanges();
@@ -71,9 +71,9 @@ namespace GuestManagementSystem.Models.Repositories
             return guest;
         }
 
-        public Guest GetGuestById(int? id)
+        public Guest GetGuestById(int? code)
         {
-            var guest = _context.Guests.Find(id);
+            var guest = _context.Guests.FirstOrDefault(x => x.MemberCode == code);
             return guest;
         }
 

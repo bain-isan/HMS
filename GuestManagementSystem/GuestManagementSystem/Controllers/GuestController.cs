@@ -48,13 +48,13 @@ namespace GuestManagementSystem.Controllers
         }
 
         [HttpPut]
-        [Route("Update/{id}")]
-        public ActionResult<Guest> UpdateGuest([FromBody] OperationOnGuest guest, int id)
+        [Route("Update/{code}")]
+        public ActionResult<Guest> UpdateGuest([FromBody] OperationOnGuest guest, int code)
         {
             if (ModelState.IsValid)
             {
 
-                var newGuest = _repo.UpdateGuest(guest, id);
+                var newGuest = _repo.UpdateGuest(guest, code);
                 if (newGuest != null)
                     return Ok(newGuest);
                 return BadRequest(new { error = "User Not Exists..." });
@@ -83,16 +83,16 @@ namespace GuestManagementSystem.Controllers
         }
 
         [HttpDelete]
-        [Route(("Delete/{id}"))]
-        public ActionResult<Guest> DeleteGuest(int id)
+        [Route(("Delete/{code}"))]
+        public ActionResult<Guest> DeleteGuest(int code)
         {
             if (ModelState.IsValid)
             {
 
-                var guest = _repo.DeleteGuest(id);
+                var guest = _repo.DeleteGuest(code);
                 if(guest != null)
                     return Ok(new {data = "Successfully Deleted..."});
-                return NotFound(new {error = "No Guest with Id: " + id});
+                return NotFound(new {error = "No Guest with Code: " + code});
             }
             return BadRequest();
         }

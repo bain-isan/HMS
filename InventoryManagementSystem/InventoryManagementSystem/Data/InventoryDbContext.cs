@@ -8,6 +8,7 @@ namespace InventoryManagementSystem.Data
         public InventoryDbContext(DbContextOptions<InventoryDbContext> options): base(options) { }
 
         public DbSet<Inventory> Inventorys { get; set; }
+        public DbSet<Room> Rooms { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

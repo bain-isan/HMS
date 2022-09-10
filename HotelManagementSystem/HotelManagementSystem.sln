@@ -3,7 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32825.248
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HotelManagementSystem", "HotelManagementSystem\HotelManagementSystem.csproj", "{C677A7E5-0D4D-46CF-A9EB-61E64082A811}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HotelManagementSystem", "HotelManagementSystem\HotelManagementSystem.csproj", "{C677A7E5-0D4D-46CF-A9EB-61E64082A811}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RoomManagementSystem", "..\RoomManagementSystem\RoomManagementSystem\RoomManagementSystem.csproj", "{BA5F8A1B-2CC4-46CB-B72D-142D01FEF97B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReservationManagementSystem", "..\ReservationManagementSystem\ReservationManagementSystem\ReservationManagementSystem.csproj", "{33E62E55-0EDC-4CDA-A7C4-0AE49435A5BA}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InventoryManagementSystem", "..\InventoryManagementSystem\InventoryManagementSystem\InventoryManagementSystem.csproj", "{552B03D6-47F0-426D-81F7-E57E273F04C3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GuestManagementSystem", "..\GuestManagementSystem\GuestManagementSystem\GuestManagementSystem.csproj", "{DD64ED41-629E-4A12-B5B3-D470C091E2FF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +23,22 @@ Global
 		{C677A7E5-0D4D-46CF-A9EB-61E64082A811}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C677A7E5-0D4D-46CF-A9EB-61E64082A811}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C677A7E5-0D4D-46CF-A9EB-61E64082A811}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA5F8A1B-2CC4-46CB-B72D-142D01FEF97B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA5F8A1B-2CC4-46CB-B72D-142D01FEF97B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA5F8A1B-2CC4-46CB-B72D-142D01FEF97B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA5F8A1B-2CC4-46CB-B72D-142D01FEF97B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{33E62E55-0EDC-4CDA-A7C4-0AE49435A5BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33E62E55-0EDC-4CDA-A7C4-0AE49435A5BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{33E62E55-0EDC-4CDA-A7C4-0AE49435A5BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33E62E55-0EDC-4CDA-A7C4-0AE49435A5BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{552B03D6-47F0-426D-81F7-E57E273F04C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{552B03D6-47F0-426D-81F7-E57E273F04C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{552B03D6-47F0-426D-81F7-E57E273F04C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{552B03D6-47F0-426D-81F7-E57E273F04C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD64ED41-629E-4A12-B5B3-D470C091E2FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD64ED41-629E-4A12-B5B3-D470C091E2FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD64ED41-629E-4A12-B5B3-D470C091E2FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD64ED41-629E-4A12-B5B3-D470C091E2FF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

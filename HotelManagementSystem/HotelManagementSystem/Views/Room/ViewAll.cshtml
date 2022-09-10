@@ -1,0 +1,67 @@
+﻿@model IEnumerable<HotelManagementSystem.Data.Rooms.Room>
+
+@{
+    ViewData["Title"] = "ViewAll";
+}
+
+<h1>ViewAll</h1>
+
+<div class="alert-success">@ViewBag.SuccessMsg</div>
+<div class="alert-danger">@ViewBag.ErrorMsg</div>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RoomNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RoomFloor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RoomType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MaxPersonAllowed)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RoomNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RoomFloor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RoomType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaxPersonAllowed)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                    @Html.ActionLink("Edit", "UpdateCheck", new { number = item.RoomNumber })
+                @Html.ActionLink("Delete", "Delete", new { number = item.RoomNumber })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
