@@ -1,7 +1,9 @@
 ﻿@model HotelManagementSystem.Data.Rooms.Room
 @using HotelManagementSystem.Data.Rooms
 @{
-    ViewData["Title"] = "Create New Room";
+    ViewData["Sstem"] = "Room Management System";
+    ViewData["Controller"] = "Room";
+    ViewData["Title"] = "Create - Room Management System";
     var list = new List<SelectListItem> { new SelectListItem { Text = "BedRoom", Value = "Bedroom" }, new SelectListItem { Text = "Hall", Value = "Hall" } };
 }
 
@@ -49,9 +51,6 @@
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

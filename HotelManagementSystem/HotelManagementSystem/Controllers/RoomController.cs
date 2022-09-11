@@ -23,10 +23,15 @@ namespace HotelManagementSystem.Controllers
                 _room.BaseAddress = new Uri("https://localhost:44308/Room/");
         }
 
-        [HttpGet("Create")]
-        public IActionResult CreateRoom()
+        public ActionResult Index()
         {
-            return View(new Room());
+            return View("Landing");
+        }
+
+        [HttpGet("Create")]
+        public IActionResult Create()
+        {
+            return View("Create", new Room());
         }
 
         [HttpPost("Create")]
@@ -41,53 +46,61 @@ namespace HotelManagementSystem.Controllers
                 ViewBag.SuccessMsg = "Room Created Successfully";
             else
                 ViewBag.ErrorMsg = JsonConvert.DeserializeObject<errors>(myRoom.Content.ReadAsStringAsync().Result).Error;
-            return View();
+            return View("Create");
         }
 
 
         [HttpGet("Update")]
-        public IActionResult UpdateRoom()
+        public IActionResult Update()
         {
-            return View(new Room());
+            return View("Update");
         }
 
         [HttpPost("Update")]
         public async Task<ActionResult> UpdateRoom(Room room)
         {
             var content = new StringContent(JsonConvert.SerializeObject(room), Encoding.UTF8, "application/json");
-            var myRoom = await _room.PutAsync("Update/" + room.RoomNumber, content);
+            var myRoom = await _room.PutAsync("Update/" + TempData["number"], content);
             if (myRoom.IsSuccessStatusCode)
                 ViewBag.SuccessMsg = "Room Updated Successfully...";
             else
                 ViewBag.ErrorMsg = "Room Update UnSuccessful...";
-            return View();
+            return View("Update");
         }
 
         [HttpGet("UpdateCheck")]
+        [HttpPost("UpdateCheck")]
         public async Task<IActionResult> UpdateCheck(int number)
         {
             var myRoom = await _room.GetAsync("View/" + number);
             if (myRoom.IsSuccessStatusCode)
             {
+                TempData["number"] = number;
                 var msg = JsonConvert.DeserializeObject<Room>(myRoom.Content.ReadAsStringAsync().Result);
                 RoomModel model = new RoomModel { Number = number, Room = msg };
                 ViewBag.SuccessMsg = "Room Found...";
-                return View("UpdateRoom", model);
+                return View("Update", model);
             }
             if (myRoom.StatusCode == System.Net.HttpStatusCode.NotFound)
             {
                 ViewBag.ErrorMsg = "Room Not Found...";
-                return View("UpdateRoom");
+                return View("Update");
             }
             else
             {
                 ViewBag.ErrorMsg = "Some Other Error...";
-                return View("UpdateRoom");
+                return View("Update");
             }
         }
 
-
         [HttpGet("View")]
+        public IActionResult ViewOne(int number)
+        {
+            return View("View");
+        }
+
+
+        [HttpPost("View")]
         public async Task<IActionResult> View(int number)
         {
             var myRoom = await _room.GetAsync("View/" + number);

@@ -2,7 +2,6 @@
   "profiles": {
     "IIS Express": {
       "commandName": "IISExpress",
-      "launchBrowser": true,
       "launchUrl": "Guest",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"

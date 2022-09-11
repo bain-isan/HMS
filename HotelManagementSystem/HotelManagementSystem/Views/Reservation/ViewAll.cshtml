@@ -1,0 +1,85 @@
+﻿@model IEnumerable<HotelManagementSystem.Data.Reservations.OperationOnReservation>
+
+@{
+    ViewData["Sstem"] = "Reservation Management System";
+    ViewData["Controller"] = "Reservation";
+    ViewData["Title"] = "ViewAll - Reservation Management System";
+}
+
+<h1>ViewAll</h1>
+
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+@if(Model != null){
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RoomNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GuestMemberCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumberOfAdults)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumberOfChild)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CheckIn)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CheckOut)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumberOfNight)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RoomNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GuestMemberCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumberOfAdults)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumberOfChild)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CheckIn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CheckOut)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumberOfNight)
+            </td>
+            <td>
+                    @Html.ActionLink("Edit", "UpdateCheck", new { number = item.Id })  |  
+                @Html.ActionLink("Delete", "Delete", new { number = item.Id })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+}
+else
+{
+    <h1>No Guest...</h1>
+}

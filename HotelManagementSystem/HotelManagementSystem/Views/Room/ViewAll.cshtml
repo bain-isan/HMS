@@ -1,17 +1,18 @@
 ﻿@model IEnumerable<HotelManagementSystem.Data.Rooms.Room>
 
 @{
-    ViewData["Title"] = "ViewAll";
+    ViewData["Sstem"] = "Room Management System";
+    ViewData["Controller"] = "Room";
+    ViewData["Title"] = "ViewAll - Room Management System";
 }
 
 <h1>ViewAll</h1>
 
-<div class="alert-success">@ViewBag.SuccessMsg</div>
-<div class="alert-danger">@ViewBag.ErrorMsg</div>
 
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+@if(Model != null){
 <table class="table">
     <thead>
         <tr>
@@ -58,10 +59,15 @@
                 @Html.DisplayFor(modelItem => item.Price)
             </td>
             <td>
-                    @Html.ActionLink("Edit", "UpdateCheck", new { number = item.RoomNumber })
+                    @Html.ActionLink("Edit", "UpdateCheck", new { number = item.RoomNumber })  |  
                 @Html.ActionLink("Delete", "Delete", new { number = item.RoomNumber })
             </td>
         </tr>
 }
     </tbody>
 </table>
+}
+else
+{
+    <h1>No Guest...</h1>
+}

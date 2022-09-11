@@ -18,6 +18,8 @@ namespace ReservationManagementSystem.Models.Repositories
             var guest = _context.Guests.FirstOrDefault(x => x.MemberCode == opReservation.GuestMemberCode);
             var reservation = new Reservation
             {
+                GuestId = guest.Id,
+                RoomId = room.Id,
                 Guest = guest,
                 Room = room,
                 NumberOfChild = opReservation.NumberOfChild,
@@ -110,6 +112,12 @@ namespace ReservationManagementSystem.Models.Repositories
             {
                 return UniqueError.GuestNotExists;
             }
+            room = SearchEmptyRoom().FirstOrDefault(x => x.RoomNumber == opReservation.RoomNumber);
+            if (room != null)
+            {
+                return UniqueError.RoomAlreadyBooked;
+            }
+                
             return UniqueError.None;
         }
 
@@ -123,13 +131,15 @@ namespace ReservationManagementSystem.Models.Repositories
 
                 case UniqueError.GuestNotExists:    return "Guest NotExists...";
 
+                case UniqueError.RoomAlreadyBooked: return "Room Already Booked";
+
                 default: return "Something Went Wrong...";
             }
         }
 
         public bool IsUnique(UniqueError err)
         {
-            if(err == UniqueError.RoomNotExists || err == UniqueError.GuestNotExists)
+            if(err == UniqueError.RoomNotExists || err == UniqueError.GuestNotExists || err == UniqueError.RoomAlreadyBooked)
                 return false;
             return true;
         }
@@ -141,6 +151,7 @@ namespace ReservationManagementSystem.Models.Repositories
     {
         None,
         RoomNotExists,
-        GuestNotExists
+        GuestNotExists,
+        RoomAlreadyBooked
     }
 }

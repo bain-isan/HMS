@@ -1,4 +1,5 @@
-﻿using HotelManagementSystem.Data.Guests;
+﻿
+using HotelManagementSystem.Data.Guests;
 using HotelManagementSystem.Data.Rooms;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;

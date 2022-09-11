@@ -1,0 +1,87 @@
+﻿@model HotelManagementSystem.Data.Guests.GuestModel
+
+@{
+    ViewData["Sstem"] = "Guest Management System";
+    ViewData["Controller"] = "Guest";
+    ViewData["Title"] = "Update - Guest Management System";
+}
+
+<h1>Update Guest Details</h1>
+
+<h4>Guest</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        
+            <div class="alert-success">@ViewBag.SuccessMsg</div>
+            <div class="alert-danger">@ViewBag.ErrorMsg</div>
+
+        <form asp-controller="Guest" asp-action="UpdateCheck" method="post">
+            <div class="form-group">
+                <label name="number" class="control-label"></label>
+                <input type="number" name="number" class="form-control" value="@{
+                    if(Model != null)
+                            @Model.Number
+                    }" 
+        />
+                <span asp-validation-for="Guest.MemberCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Search" class="btn btn-primary" />
+            </div>
+        </form>
+        @if(Model != null){
+            <form asp-action="UpdateGuest" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Guest.Id" class="control-label"></label>
+                <input asp-for="Guest.Id" class="form-control" disabled />
+                <span asp-validation-for="Guest.Id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Guest.Name" class="control-label"></label>
+                    <input asp-for="Guest.Name" class="form-control" />
+                    <span asp-validation-for="Guest.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Guest.MemberCode" class="control-label"></label>
+                    <input asp-for="Guest.MemberCode" class="form-control" />
+                    <span asp-validation-for="Guest.MemberCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Guest.PhoneNumber" class="control-label"></label>
+                <input asp-for="Guest.PhoneNumber" class="form-control" />
+                <span asp-validation-for="Guest.PhoneNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Guest.Email" class="control-label"></label>
+                <input asp-for="Guest.Email" class="form-control" />
+                <span asp-validation-for="Guest.Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Guest.Gender" class="control-label"></label>
+                <input asp-for="Guest.Gender" class="form-control" />
+                <span asp-validation-for="Guest.Gender" class="text-danger"></span>
+            </div>
+                <div class="form-group">
+                    <label asp-for="Guest.Address" class="control-label"></label>
+                    <input asp-for="Guest.Address" class="form-control" />
+                    <span asp-validation-for="Guest.Address" class="text-danger"></span>
+                </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    
+
+
+        }
+    </div>
+</div>
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }
